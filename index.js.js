@@ -10,6 +10,7 @@ const OpenAIApi = openaiModule.OpenAIApi
 const Configuration = openaiModule.Configuration;
 console.log(process.env.API_KEY)
 console.log(process.env.organization)
+console.log("these are the keys")
 const gTTS = require('gtts');
 
 const app = express();
@@ -25,10 +26,6 @@ const openai = new OpenAIApi(new Configuration({
 
 
 app.post("/", async(req,res)=>{
-
-// res.json({
-//   name:"fuck you"
-// })
 
 const {messages} = req.body;
 
@@ -47,9 +44,9 @@ const completion = await openai.createChatCompletion({
 res.json({
   completion:completion.data.choices[0].message
 })
-// .catch(err=>{
-//   console.log(err)
-// })
+.catch(err=>{
+  console.log(err)
+})
 })
 
 app.listen (port,()=>{
@@ -60,3 +57,4 @@ app.listen (port,()=>{
 
 
 // chat("")
+
